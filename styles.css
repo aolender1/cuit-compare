@@ -1,0 +1,233 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables de tema */
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --button-bg: #000000;
+    --button-text: #ffffff;
+    --button-hover-bg: #333333;
+    --footer-bg: #f1f1f1;
+    --footer-text: #000000;
+}
+
+body.dark-theme {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --button-bg: #ffffff;
+    --button-text: #000000;
+    --button-hover-bg: #dddddd;
+    --footer-bg: #1e1e1e;
+    --footer-text: #ffffff;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+.file-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.file-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+input[type="file"]::file-selector-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.compare-button {
+    display: block;
+    cursor: pointer;
+    color: white;
+    margin: 0 auto;
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 3px;
+    isolation: isolate;
+    width: fit-content;
+}
+
+.compare-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400%;
+    height: 100%;
+    background: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+    background-size: 25% 100%;
+    animation: border-animation 0.75s linear infinite;
+    animation-play-state: paused;
+    transform: translate(-5%, 0%);
+    transition: transform 0.25s ease-out;
+    z-index: 0;
+}
+
+.compare-button:hover::before {
+    animation-play-state: running;
+    transform: translate(0%, 0%);
+}
+
+@keyframes border-animation {
+    to {
+        transform: translateX(-25%);
+    }
+}
+
+.compare-button span {
+    position: relative;
+    display: block;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 3px;
+    z-index: 1;
+    transition: background 0.3s, color 0.3s;
+}
+
+.compare-button:hover span {
+    background: var(--button-hover-bg);
+}
+
+#result {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: var(--background-color);
+}
+
+#result .success {
+    color: red;
+}
+
+#result .failure {
+    color: green;
+}
+
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer a {
+    color: var(--footer-text);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    opacity: 0.8;
+}
+
+/* Estilos para el botón de cambiar tema */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-label {
+    height: 60px;
+    width: 120px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: inset 0 0 5px 4px rgba(255, 255, 255, 1),
+        inset 0 0 20px 1px rgba(0, 0, 0, 0.488),
+        10px 20px 30px rgba(0, 0, 0, 0.096),
+        inset 0 0 0 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s;
+}
+
+.toggle-label:hover {
+    transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+}
+
+#theme-toggle:checked + .toggle-label:hover {
+    transform: perspective(100px) rotateX(-5deg) rotateY(5deg);
+}
+
+#theme-toggle {
+    display: none;
+}
+
+#theme-toggle:checked + .toggle-label::before {
+    left: 70px;
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 70%);
+    transition: 0.4s;
+}
+
+.toggle-label::before {
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #000000;
+    background-image: linear-gradient(130deg, #757272 10%, #ffffff 11%, #726f6f 62%);
+    left: 10px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3),
+        10px 10px 10px rgba(0, 0, 0, 0.3);
+    transition: 0.4s;
+}

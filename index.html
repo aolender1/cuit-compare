@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comparador de CUITs</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluir SheetJS desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Comparador de CUITs</h1>
+        <!-- Botón de Cambiar Tema -->
+        <div class="theme-switcher">
+            <input type="checkbox" id="theme-toggle" />
+            <label for="theme-toggle" class="toggle-label"></label>
+        </div>
+    </header>
+
+    <main>
+        <section class="file-inputs">
+            <div class="file-container">
+                <label for="txtFile">Selecciona el archivo <strong>Facturas.txt</strong>:</label>
+                <input type="file" id="txtFile" accept=".txt">
+            </div>
+
+            <div class="file-container">
+                <label for="excelFile">Selecciona el archivo Excel <strong>SubdiarioIvaCompras.xlsx</strong>:</label>
+                <input type="file" id="excelFile" accept=".xlsx, .xls">
+            </div>
+        </section>
+
+        <!-- Botón de Comparar CUITs -->
+        <a class="compare-button"><span>Comparar CUITs</span></a>
+
+        <!-- Resultado de la Comparación -->
+        <div id="result"></div>
+    </main>
+
+    <!-- Footer con Autor y Enlace a GitHub -->
+    <footer>
+        <p>aolender | <a href="https://github.com/aolender1" target="_blank">GitHub</a></p>
+    </footer>
+</body>
+</html>
